@@ -41,14 +41,7 @@ Task:
 - **Write an SQL query** to transform this table into **1NF**, ensuring that each row represents a single product for an order
 ## Answers -  I have added comments where neccessary.
 -- Create a new table for normalized data
-CREATE DATABASE Company;
-USE Company;
--- Create a new table for normalized data
-CREATE TABLE ProductDetail_1NF (
-    OrderID INT PRIMARY KEY,
-    CustomerName VARCHAR(255),
-    Product VARCHAR(255)
-);
+
 CREATE TABLE NewProductTable (
 ProductID INT PRIMARY KEY,
 ProductName VARCHAR(100),
@@ -62,7 +55,7 @@ INSERT INTO NewProductTable (ProductID, ProductName, OrderID, CustomerName) VALU
 (4, 'Keyboard', 102, 'Jane Smith'),
 (5, 'Mouse', 102, 'Jane Smith'),
 (6, 'Phone', 103, 'Emily Clark');
--- Select To retrieve the New Product Table
+-- Select To retrieve the New Product Table that meets 1NF if need be.
 SELECT * FROM NewProductTable;
 
 
@@ -85,21 +78,6 @@ SELECT * FROM NewProductTable;
 
 - Write an SQL query to transform this table into **2NF** by removing partial dependencies. Ensure that each non-key column fully depends on the entire primary key.
 ## Answers - I have added comments where neccessary.
-CREATE DATABASE Company;
-USE Company;
-CREATE TABLE OrderDetails (
-OrderID INT,
-CustomerName VARCHAR(255),
-Product VARCHAR(100),
-Quantity INT 
-);
-INSERT INTO OrderDetails (OrderID, CustomerName, Product, Quantity) VALUES
-(101, 'John Doe', 'Laptop', 2),
-(101, 'John Doe', 'Mouse', 1),
-(102, 'Jane Smith', 'Tablet', 3),
-(102, 'Jane Smith', 'Keyboard', 1),
-(102, 'Jane Smith', 'Mouse', 2),
-(103, 'Emily Clark', 'Phone', 1);
 
 -- Create two separate tables to achieve 2NF.
 -- Table1 for Orders
@@ -124,7 +102,7 @@ SELECT DISTINCT OrderID, CustomerName FROM OrderDetails;
 INSERT INTO OrderProducts (OrderID, Product, Quantity)
 SELECT OrderID, Product, Quantity FROM OrderDetails;
 
--- Select to show transformed data
+-- Select to show transformed data if need be.
 SELECT * FROM Orders;
 SELECT * FROM OrderProducts;
 
